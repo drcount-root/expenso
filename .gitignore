@@ -3,4 +3,5 @@
 /.cache
 /build
 /public/build
+
 .env
