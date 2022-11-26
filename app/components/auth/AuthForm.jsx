@@ -1,18 +1,27 @@
-import { Link, useSearchParams } from '@remix-run/react';
-import { FaLock, FaUserPlus } from 'react-icons/fa';
+import {
+  Form,
+  Link,
+  useSearchParams,
+  useTransition as useNavigation,
+} from "@remix-run/react";
+import { FaLock, FaUserPlus } from "react-icons/fa";
 
 function AuthForm() {
   const [searchParams] = useSearchParams();
-  const authMode = searchParams.get('mode') || 'login';
+  const navigation = useNavigation();
 
-  const submitBtnCaption = authMode === 'login' ? 'Login' : 'Create User';
+  const authMode = searchParams.get("mode") || "login";
+
+  const submitBtnCaption = authMode === "login" ? "Login" : "Create User";
   const toggleBtnCaption =
-    authMode === 'login' ? 'Create a new user' : 'Log in with existing user';
+    authMode === "login" ? "Create a new user" : "Log in with existing user";
+
+  const isSubmitting = navigation.state !== "idle";
 
   return (
-    <form method="post" className="form" id="auth-form">
+    <Form method="post" className="form" id="auth-form">
       <div className="icon-img">
-        {authMode === 'login' ? <FaLock /> : <FaUserPlus />}
+        {authMode === "login" ? <FaLock /> : <FaUserPlus />}
       </div>
       <p>
         <label htmlFor="email">Email Address</label>
@@ -23,12 +32,14 @@ function AuthForm() {
         <input type="password" id="password" name="password" minLength={7} />
       </p>
       <div className="form-actions">
-        <button>{submitBtnCaption}</button>
-        <Link to={authMode === 'login' ? '?mode=signup' : '?mode=login'}>
+        <button disabled={isSubmitting}>
+          {isSubmitting ? "Authenticating..." : submitBtnCaption}
+        </button>
+        <Link to={authMode === "login" ? "?mode=signup" : "?mode=login"}>
           {toggleBtnCaption}
         </Link>
       </div>
-    </form>
+    </Form>
   );
 }
 
