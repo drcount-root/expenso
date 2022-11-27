@@ -1,19 +1,19 @@
 // /expenses/add
 
-import { redirect } from "@remix-run/node";
-import { useNavigate } from "@remix-run/react";
+import { redirect } from '@remix-run/node';
+import { useNavigate } from '@remix-run/react';
 
-import ExpenseForm from "~/components/expenses/ExpenseForm";
-import Modal from "~/components/util/Modal";
-import { addExpense } from "~/data/expenses.server";
-import { validateExpenseInput } from "~/data/validation.server";
+import ExpenseForm from '~/components/expenses/ExpenseForm';
+import Modal from '~/components/util/Modal';
+import { addExpense } from '~/data/expenses.server';
+import { validateExpenseInput } from '~/data/validation.server';
 
 export default function AddExpensesPage() {
   const navigate = useNavigate();
 
   function closeHandler() {
     // navigate programmatically
-    navigate("..");
+    navigate('..');
   }
 
   return (
@@ -34,5 +34,5 @@ export async function action({ request }) {
   }
 
   await addExpense(expenseData);
-  return redirect("/expenses");
+  return redirect('/expenses');
 }

@@ -7,15 +7,15 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
-} from "@remix-run/react";
+} from '@remix-run/react';
 
-import sharedStyles from "~/styles/shared.css";
-import Error from "./components/util/Error";
+import sharedStyles from '~/styles/shared.css';
+import Error from './components/util/Error';
 
 export const meta = () => ({
-  charset: "utf-8",
-  title: "New Remix App",
-  viewport: "width=device-width,initial-scale=1",
+  charset: 'utf-8',
+  title: 'New Remix App',
+  viewport: 'width=device-width,initial-scale=1',
 });
 
 function Document({ title, children }) {
@@ -53,7 +53,7 @@ export function CatchBoundary() {
         <Error title={caughtResponse.statusText}>
           <p>
             {caughtResponse.data?.message ||
-              "Something went wrong. Please try again later."}
+              'Something went wrong. Please try again later.'}
           </p>
           <p>
             Back to <Link to="/">safety</Link>.
@@ -70,7 +70,7 @@ export function ErrorBoundary({ error }) {
       <main>
         <Error title="An error occurred">
           <p>
-            {error.message || "Something went wrong. Please try again later."}
+            {error.message || 'Something went wrong. Please try again later.'}
           </p>
           <p>
             Back to <Link to="/">safety</Link>.
@@ -82,5 +82,5 @@ export function ErrorBoundary({ error }) {
 }
 
 export function links() {
-  return [{ rel: "stylesheet", href: sharedStyles }];
+  return [{ rel: 'stylesheet', href: sharedStyles }];
 }
