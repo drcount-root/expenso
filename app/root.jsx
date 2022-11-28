@@ -15,7 +15,7 @@ import Error from './components/util/Error';
 
 export const meta = () => ({
   charset: 'utf-8',
-  title: 'Expenso',
+  title: 'RemixExpenses',
   viewport: 'width=device-width,initial-scale=1',
 });
 
